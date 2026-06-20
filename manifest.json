@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Authenticator",
+  "description": "Generates TOTP codes and random passwords entirely on-device. No storage, no permissions.",
+  "version": "1.0.0",
+  "icons": {
+  "16": "icon.png",
+  "48": "icon.png",
+  "128": "icon.png"
+},
+"action": {
+  "default_icon": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "default_popup": "popup.html",
+  "default_title": "Authenticator"
+},
+  "permissions": [],
+  "host_permissions": [],
+  "offline_enabled": true
+}

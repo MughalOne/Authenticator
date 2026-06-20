@@ -1,0 +1,285 @@
+:root {
+  /* Modern color palette */
+  --bg-gradient-start: #0f172a;
+  --bg-gradient-end: #1e293b;
+  --primary-color: #6366f1;
+  --primary-hover: #818cf8;
+  --secondary-color: #0ea5e9;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --surface-1: rgba(30, 41, 59, 0.8);
+  --surface-2: rgba(51, 65, 85, 0.6);
+  --border-color: rgba(148, 163, 184, 0.2);
+  --shadow-color: rgba(15, 23, 42, 0.5);
+  --success-color: #10b981;
+  
+  /* 3D effect variables */
+  --card-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
+  --button-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
+  --pressed-shadow: 0 2px 3px -1px var(--shadow-color) inset;
+  --card-border: 1px solid var(--border-color);
+  
+  /* Dimensions */
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif;
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-primary);
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  width: 100%;
+  max-width: 320px;
+  backdrop-filter: blur(10px);
+  background: var(--surface-1);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--card-shadow);
+  padding: 20px;
+  border: var(--card-border);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 16px;
+  color: var(--text-primary);
+  text-align: center;
+  letter-spacing: 0.5px;
+  position: relative;
+  transform: translateZ(10px);
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 12px 0 6px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transform: translateZ(5px);
+}
+
+.secret-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
+input#secret {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: var(--border-radius-md);
+  border: var(--card-border);
+  background: var(--surface-2);
+  color: var(--text-primary);
+  outline: none;
+  transition: all 0.2s ease;
+  transform: translateZ(5px);
+  box-shadow: var(--pressed-shadow);
+}
+
+input#secret:focus {
+  box-shadow: 0 0 0 2px var(--primary-color);
+  border-color: transparent;
+}
+
+input#secret::placeholder {
+  color: var(--text-muted);
+}
+
+button {
+  border: none;
+  padding: 12px 16px;
+  border-radius: var(--border-radius-md);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--text-primary);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: var(--button-shadow);
+  transform: translateZ(5px);
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover {
+  transform: translateZ(8px) translateY(-2px);
+  box-shadow: 0 6px 10px -2px var(--shadow-color);
+}
+
+button:active {
+  transform: translateZ(2px) translateY(1px);
+  box-shadow: var(--pressed-shadow);
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(255, 255, 255, 0.1), transparent);
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+button:hover::before {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: translateZ(2px);
+  box-shadow: none;
+}
+
+button.ghost {
+  background: var(--surface-2);
+  color: var(--text-secondary);
+}
+
+.code-card {
+  margin-top: 20px;
+  background: var(--surface-2);
+  border: var(--card-border);
+  border-radius: var(--border-radius-lg);
+  padding: 18px;
+  box-shadow: var(--card-shadow);
+  transform-style: preserve-3d;
+  transform: translateZ(15px);
+  position: relative;
+}
+
+.code-card::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent);
+  border-radius: calc(var(--border-radius-lg) - 1px);
+  z-index: -1;
+}
+
+.code {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 4px;
+  font-size: 32px;
+  text-align: center;
+  margin: 8px 0 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-shadow: 0 2px 4px var(--shadow-color);
+  transform: translateZ(5px);
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-muted);
+  transform: translateZ(3px);
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.clock {
+  font-variant-numeric: tabular-nums;
+}
+
+small {
+  color: var(--text-muted);
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  transform: translateZ(2px);
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 12px;
+  text-align: center;
+  transform: translateZ(5px);
+}
+
+button.link {
+  background: none;
+  border: none;
+  color: var(--secondary-color);
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 12px;
+  padding: 0;
+  box-shadow: none;
+  transform: translateZ(0);
+}
+
+button.link:hover {
+  color: var(--primary-hover);
+  transform: translateZ(0);
+  box-shadow: none;
+}
+
+#notes {
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: var(--border-radius-md);
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  transform: translateZ(5px);
+  box-shadow: var(--pressed-shadow);
+}
+
+.hidden {
+  display: none;
+}
+
+/* Animation for the code refresh */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+#remaining.low {
+  color: var(--success-color);
+  animation: pulse 1s infinite;
+}

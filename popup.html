@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Authenticator</title>
+  <link rel="stylesheet" href="popup.css" />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+</head>
+
+<body>
+  <main>
+    <!-- TOTP Generator Screen -->
+    <div id="totp-screen" class="screen active">
+      <h1>TOTP Generator</h1>
+
+      <label for="secret">Enter Secret (Base32)</label>
+      <div class="secret-row">
+        <input id="secret" type="password" autocomplete="off" inputmode="text" spellcheck="false"
+          placeholder="JBSWY3DPEHPK3PXP" aria-describedby="secretHelp" />
+        <button id="toggle" class="ghost" aria-label="Show/Hide">👁</button>
+        <button id="clear" class="ghost" aria-label="Clear secret">✖</button>
+      </div>
+      <small id="secretHelp">Nothing is stored. All computation happens locally in this popup.</small>
+
+      <div class="code-card" role="status" aria-live="polite">
+        <div id="code" class="code">••••••</div>
+        <div class="progress-container">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div class="meta">
+          <span>Refresh in <span id="remaining">--</span>s</span>
+          <span id="clock" class="clock"></span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="generate-totp" class="primary-btn">Generate</button>
+        <button id="copy-totp" class="secondary-btn" disabled>Copy</button>
+        <button id="reset-totp" class="secondary-btn">Reset</button>
+      </div>
+    </div>
+
+    <!-- Password Generator Screen -->
+    <div id="password-screen" class="screen">
+      <h1>Password Generator</h1>
+
+      <div class="input-group">
+        <label for="password-length">Length</label>
+        <input type="number" id="password-length" value="16" min="4" max="64">
+      </div>
+
+      <div class="checkbox-group">
+        <div class="checkbox">
+          <input type="checkbox" id="uppercase" checked>
+          <label for="uppercase">Uppercase</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="lowercase" checked>
+          <label for="lowercase">Lowercase</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="numbers" checked>
+          <label for="numbers">Numbers</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="symbols" checked>
+          <label for="symbols">Symbols</label>
+        </div>
+      </div>
+
+      <div class="code-card">
+        <div id="password" class="code">------------</div>
+      </div>
+
+      <div class="actions">
+        <button id="generate-password" class="primary-btn">Generate</button>
+        <button id="copy-password" class="secondary-btn" disabled>Copy</button>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-buttons">
+      <button id="nav-totp" class="nav-btn active">TOTP</button>
+      <button id="nav-password" class="nav-btn">Password</button>
+    </div>
+  </main>
+  <script src="popup.js" defer></script>
+</body>
+
+</html>
